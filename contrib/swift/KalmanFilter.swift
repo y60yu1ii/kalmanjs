@@ -3,7 +3,6 @@
 // Copyright (c) 2019 fishare. All rights reserved.
 //
 
-import Foundation
  /**
 * Create 1-dimensional kalman filter
 * @param  {Number} options.R Process noise
@@ -13,7 +12,7 @@ import Foundation
 * @param  {Number} options.C Measurement vector
 * @return {KalmanFilter}
 */
-class KalmanFilter{
+public class KalmanFilter{
     var R:Double = 1
     var Q:Double = 1
     var A:Double = 1
@@ -22,6 +21,7 @@ class KalmanFilter{
 
     var cov:Double = Double.nan
     var x:Double = Double.nan
+    init() {}
     init(R:Double, Q:Double) {}
     init(R:Double, Q:Double, A:Double, B:Double, C:Double) {}
 /**
@@ -30,7 +30,7 @@ class KalmanFilter{
 * @param  {Number} u Control
 * @return {Number}
 */
-func filter(z:Double, u:Double = 0) -> Double {
+func filter(_ z:Double, _ u:Double = 0) -> Double {
     if (x.isNaN) {
         x = (1 / C) * z;
         cov = (1 / C) * Q * (1 / C);
@@ -56,7 +56,7 @@ func filter(z:Double, u:Double = 0) -> Double {
 * @param  {Number} [u] Control
 * @return {Number}
 */
-func predict(u:Double = 0) -> Double {
+func predict(_ u:Double = 0) -> Double {
     return (A * x) + (B * u);
 }
 
@@ -80,7 +80,7 @@ func lastMeasurement() -> Double {
 * Set measurement noise Q
 * @param {Number} noise
 */
-func setMeasurementNoise(noise:Double) -> Double{
+func setMeasurementNoise(_ noise:Double){
     Q = noise;
 }
 
@@ -88,7 +88,7 @@ func setMeasurementNoise(noise:Double) -> Double{
 * Set the process noise R
 * @param {Number} noise
 */
-func setProcessNoise(noise:Double) -> Double{
+func setProcessNoise(_ noise:Double){
     R = noise;
 }
 
